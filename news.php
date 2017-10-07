@@ -1,11 +1,6 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
 <head>
-  <style>
-  a {
-text-decoration: none;
-}
-  </style>
 </head>
 <body>
 
@@ -13,21 +8,9 @@ text-decoration: none;
   Please check out the latest news links!
 </p>
 
-<?php
-$dir_open = opendir('uploads/');
-while(false !== ($filename = readdir($dir_open))){
-      /* The if statement checks the current value of $filename, and omits
-      them from the list if they are either "." or ".." */
-    if($filename != "." && $filename != ".."){
-        $filenamenew = str_replace("_", " ", "$filename");
-        $link = "<a href='uploads/$filename'> $filenamenew </a><br />";
-        echo $link;
-    }
-}
-closedir($dir_open);
-?>
+<?php include 'newsadd.php';?>
 
-<p><strong>August 2017</strong></p>
+<strong>August 2017</strong></p>
 <table cellpadding="5">
   <tr>
    <td valign="top">08/04/17</td>
