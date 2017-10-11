@@ -4,7 +4,6 @@ $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $pdfFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists. ";
@@ -30,5 +29,18 @@ if ($uploadOk == 0) {
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
+}
+if ($uploadOk == 1) {
+  $monthyear = $_POST['monthyear'];
+  $date = $_POST['date'];
+  $filename = basename($_FILES["fileToUpload"]["name"]);
+  $name = $_POST['linktext'];
+  $text =  '<tr>
+  <td valign="top">' . $date . '</td>
+      <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+    </tr>' . PHP_EOL;
+  $file = new SplFileObject('./newsadd.php', 'a');
+  // $file->seek(0);
+  $file->fwrite($text);
 }
 ?>

@@ -3,19 +3,12 @@
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
+    <input type="submit" value="Upload Image" name="submit"><br /><br />
+    Enter date (dd/mm/yyy) to be displayed along with newsroom update.
+    <input type="text" name="date" value="<?php echo date('m/d/y');?>"/><br /><br />
+    Enter the text that will display as a link to the file.
+    <input type="text" name="linktext"/>
+    <input type="hidden" name="monthyear" value="<?php echo date("F Y");?>"/>
 </form>
-
-<?php
-$text =  '<tr>
-<td valign="top">08/04/17</td>
-    <td><a href="/phpsite/newsroom_repository/Genetic_Testing_Requirement_Reminder.pdf" target="_blank">Genetic Testing Requirement Reminder	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
-  </tr>' . PHP_EOL;
-// $openfile = fopen("./news.php", "r+") or die("Unable to open file!");
-$file = new SplFileObject('./newsadd.php', 'a');
-$file->seek(0);
-$file->fwrite($text);
-?>
-
 </body>
 </html>
