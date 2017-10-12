@@ -35,12 +35,21 @@ if ($uploadOk == 1) {
   $date = $_POST['date'];
   $filename = basename($_FILES["fileToUpload"]["name"]);
   $name = $_POST['linktext'];
+  $textlong = '<p><strong>' . $monthyear . '</strong></p>
+  <table cellpadding="5">
+    <tr>
+  <td valign="top">' . $date . '</td>
+      <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+    </tr>' . PHP_EOL;
   $text =  '<tr>
   <td valign="top">' . $date . '</td>
       <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>' . PHP_EOL;
   $file = new SplFileObject('./newsadd.php', 'a');
-  // $file->seek(0);
-  $file->fwrite($text);
+    if(strpos(file_get_contents("./newsadd.php"),$_GET["$monthyear"]) !== false) {//if the month and year already exists, create new table
+      $file->fwrite($textlong);
+  }else{
+      $file->fwrite($text);
+  }
 }
 ?>

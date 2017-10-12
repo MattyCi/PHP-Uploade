@@ -10,7 +10,7 @@
 
 <?php include 'newsadd.php';?>
 
-<strong>August 2017</strong></p>
+<p><strong>August 2017</strong></p>
 <table cellpadding="5">
   <tr>
    <td valign="top">08/04/17</td>
