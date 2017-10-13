@@ -35,22 +35,52 @@ if ($uploadOk == 1) {
   $date = $_POST['date'];
   $filename = basename($_FILES["fileToUpload"]["name"]);
   $name = $_POST['linktext'];
-  $textlong = '<p><strong>' . $monthyear . '</strong></p>
-  <table cellpadding="5">
+  $textlong = '<p><strong>' . $monthyear . '</strong></p><table cellpadding="5">
     <tr>
   <td valign="top">' . $date . '</td>
       <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>
     </table>' . PHP_EOL;
-  $text =  '<tr>
+  $text =  PHP_EOL . '<tr>
   <td valign="top">' . $date . '</td>
       <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>' . PHP_EOL;
-  $file = new SplFileObject('./newsadd.php', 'a');
-    if(strpos(file_get_contents("./newsadd.php"),$monthyear) !== false) {//if the month and year already exists, create new table
-      $file->fwrite($text);
+    if(strpos(file_get_contents("./newsadd.php"),$monthyear) !== false) {      //if the month and year already exists, create new table
+            $key = '<p><strong>' . $monthyear . '</strong></p><table cellpadding="5">';
+
+            //copy file to prevent double entry
+            $file = "newsadd.php";
+            $newfile = "newsaddbuffer.php";
+            copy($file, $newfile) or exit("failed to copy $file");
+
+            //load file into $lines array
+            $fc = fopen ($file, "a");
+            while (!feof ($fc))
+            {
+              $buffer = fgets($fc, 4096);
+              $lines[] = $buffer;
+            }
+
+            fclose ($fc);
+
+            //open same file and use "w" to clear file
+            $f=fopen($newfile,"w") or die("couldn't open $file");
+
+            //loop through array using foreach
+            foreach($lines as $line)
+            {
+              if (strstr($line,$key)){ //look for $key in each line
+              $pos = strpos($key, '">');
+              $line = substr_replace($key, $text, $pos + 2, 0);
+              }
+              fwrite($f,$line); //place $line back in file
+            }
+            fclose($f);
+
+            copy($newfile, $file) or exit("failed to copy $newfile");
   }else{
-      $file->fwrite($textlong);
+    $textlong .= file_get_contents('newsadd.php');
+    file_put_contents('newsadd.php', $textlong);
   }
 }
 ?>

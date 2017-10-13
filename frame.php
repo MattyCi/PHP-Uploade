@@ -10,5 +10,8 @@
     <input type="text" name="linktext"/>
     <input type="hidden" name="monthyear" value="<?php echo date("F Y");?>"/>
 </form>
+November 2017
+September 2017
+December 2018
 </body>
 </html>
