@@ -1,4 +1,3 @@
-
 <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -38,15 +37,15 @@ if ($uploadOk == 1) {
   $textlong = '<p><strong>' . $monthyear . '</strong></p><table cellpadding="5">
     <tr>
   <td valign="top">' . $date . '</td>
-      <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+      <td><a href="/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>
     </table>' . PHP_EOL;
   $text =  PHP_EOL . '<tr>
   <td valign="top">' . $date . '</td>
-      <td><a href="/phpsite/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+      <td><a href="/PHP-Uploade/uploads/' . $filename . '" target="_blank">' . $name . '	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>' . PHP_EOL;
     if(strpos(file_get_contents("./newsadd.php"),$monthyear) !== false) {      //if the month and year already exists, create new table
-            $key = '<p><strong>' . $monthyear . '</strong></p><table cellpadding="5">';
+            $key = '<p><strong>'.$monthyear.'</strong></p><table cellpadding="5">';
 
             //copy file to prevent double entry
             $file = "newsadd.php";
@@ -54,26 +53,28 @@ if ($uploadOk == 1) {
             copy($file, $newfile) or exit("failed to copy $file");
 
             //load file into $lines array
-            $fc = fopen ($file, "a");
-            while (!feof ($fc))
-            {
-              $buffer = fgets($fc, 4096);
-              $lines[] = $buffer;
-            }
+             $fc = fopen ($file, "r");
+             while (!feof ($fc))
+             {
+                $buffer = fgets($fc, 4096);
+                $lines[] = $buffer;
+             }
 
             fclose ($fc);
 
             //open same file and use "w" to clear file
             $f=fopen($newfile,"w") or die("couldn't open $file");
 
+
             //loop through array using foreach
             foreach($lines as $line)
             {
-              if (strstr($line,$key)){ //look for $key in each line
-              $pos = strpos($key, '">');
-              $line = substr_replace($key, $text, $pos + 2, 0);
+                if (strstr($line,$key)) //look for $key in each line
+              {
+            		$pos = strpos($key, '">');
+            		$line = substr_replace($key, $text, $pos + 2, 0);
               }
-              fwrite($f,$line); //place $line back in file
+                fwrite($f,$line); //place $line back in file
             }
             fclose($f);
 
