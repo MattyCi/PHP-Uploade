@@ -21,6 +21,10 @@
 <p><strong>October 2017</strong></p><table cellpadding="5">
 <tr>
   <td valign="top">10/15/17</td>
+      <td><a href="/PHP-Uploade/uploads/hap_2018_individual_plans_release_for_posting.pdf" target="_blank">test	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+    </tr>
+<tr>
+  <td valign="top">10/15/17</td>
       <td><a href="/PHP-Uploade/uploads/important_reminder_healthPlus_website_shut_down_notice.pdf" target="_blank">test	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>
 <tr>
