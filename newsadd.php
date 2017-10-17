@@ -20,6 +20,10 @@
     </table>
 <p><strong>October 2017</strong></p><table cellpadding="5">
 <tr>
+  <td valign="top">10/17/17</td>
+      <td><a href="/PHP-Uploade/uploads/town_hall_2017.pdf" target="_blank">Genetic Testing Requirements	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
+    </tr>
+<tr>
   <td valign="top">10/15/17</td>
       <td><a href="/PHP-Uploade/uploads/hap_2018_individual_plans_release_for_posting.pdf" target="_blank">test	</a><img src="/phpsite/newsroom_repository/pdf.gif" alt="PDF" border="0" align="absmiddle" /></td>
     </tr>
