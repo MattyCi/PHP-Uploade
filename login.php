@@ -1,10 +1,9 @@
 <?php
+$users = array(
+  "mary"=>"test0", "matt"=>"test1", "lisa"=>"test2"
+);
 
-// Define your username and password
-$username = "admin";
-$password = "password";
-
-if ($_POST['txtUsername'] != $username || $_POST['txtPassword'] != $password) {
+if ( ! isset($users[$postuser]) || $users[$postuser] != $postpass) {
 
 ?>
 
@@ -18,12 +17,6 @@ if ($_POST['txtUsername'] != $username || $_POST['txtPassword'] != $password) {
     <br /><input type="password" title="Enter your password" name="txtPassword" /></p>
 
     <p><input type="submit" name="Submit" value="Login" /></p>
-
 </form>
 
 <?php
-}
-else {
-include 'frame.php';
-}
-?>
